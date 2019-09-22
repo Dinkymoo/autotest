@@ -1,4 +1,4 @@
-# APM-Demo5
+# Auto Test
 
 Demo of container/presentational pattern and OnPush change detection strategy.
 
