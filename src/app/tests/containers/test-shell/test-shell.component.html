@@ -1,0 +1,21 @@
+<div class='row'>
+  <div class='col-md-4'>
+    <pm-test-list
+    [displayCode]="displayCode$ | async"
+    [tests]="tests$ | async"
+    [selectedtest]="selectedtest$ | async"
+	  [errorMessage]="errorMessage$ | async"
+    (checked)="checkChanged($event)"
+    (initializeNewtest)="(newtest())"
+    (selected)="testSelected($event)"></pm-test-list>
+  </div>
+  <div class='col-md-8'>
+    <pm-test-edit
+    [selectedtest]="selectedtest$ | async"
+	  [errorMessage]="errorMessage$ | async"
+    (clearCurrent)="cleartest()"
+    (update)="updatetest($event)"
+    (delete)="deletetest($event)"
+    (create)="savetest($event)"></pm-test-edit>
+  </div>
+</div>

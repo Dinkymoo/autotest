@@ -1,0 +1,100 @@
+<div class="card" *ngIf="test">
+  <div class="card-header">
+    {{pageTitle}}
+  </div>
+  <div class="card-body">
+    <form novalidate (ngSubmit)="savetest()" [formGroup]="testForm">
+      <fieldset>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="testNameId">test Name</label>
+
+          <div class="col-md-9">
+            <input [ngClass]="{'is-invalid': displayMessage.testName }" 
+                   class="form-control" 
+                   id="testNameId" 
+                   type="text" 
+                   placeholder="Name (required)" 
+                   formControlName="testName" 
+                   (blur)="blur()" />
+            <span class="invalid-feedback" *ngIf="displayMessage.testName">
+              {{displayMessage.testName}}
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="testCodeId">test Code</label>
+
+          <div class="col-md-9">
+            <input [ngClass]="{'is-invalid': displayMessage.testCode}" 
+                   class="form-control"
+                   id="testCodeId"
+                   type="text"
+                   placeholder="Code (required)"
+                   formControlName="testCode"
+                   (blur)="blur()" />
+            <span class="invalid-feedback" *ngIf="displayMessage.testCode">
+              {{displayMessage.testCode}}
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="starRatingId">Star Rating (1-5)</label>
+
+          <div class="col-md-9">
+            <input [ngClass]="{'is-invalid': displayMessage.starRating}"
+                   class="form-control" 
+                   id="starRatingId" 
+                   type="text" 
+                   placeholder="Rating" 
+                   formControlName="starRating" />
+            <span class="invalid-feedback" *ngIf="displayMessage.starRating">
+              {{displayMessage.starRating}}
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="descriptionId">Description</label>
+
+          <div class="col-md-9">
+            <textarea [ngClass]="{'is-invalid': displayMessage.description}"
+                      class="form-control" 
+                      id="descriptionId" 
+                      placeholder="Description" 
+                      rows=3 
+                      formControlName="description">
+            </textarea>
+            <span class="invalid-feedback" *ngIf="displayMessage.description">
+              {{ displayMessage.description}}
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-md-10 col-md-offset-2">
+            <span>
+              <button class="btn btn-primary" type="submit" style="width:80px;margin-right:10px" [disabled]="!testForm.valid || !testForm.dirty">
+                Save
+              </button>
+            </span>
+            <span>
+              <button class="btn btn-light" type="button" style="width:80px;margin-right:10px" (click)="cancelEdit()">
+                Cancel
+              </button>
+            </span>
+            <span>
+              <button class="btn btn-light" type="button" style="width:80px" (click)="deletetest()">
+                Delete
+              </button>
+            </span>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>
+<div *ngIf="errorMessage" class="alert alert-danger">
+  Error: {{ errorMessage }}
+</div>

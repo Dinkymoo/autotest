@@ -1,0 +1,21 @@
+<div class='row'>
+  <div class='col-md-4'>
+    <pm-app-list
+    [displayCode]="displayCode$ | async"
+    [apps]="apps$ | async"
+    [selectedapp]="selectedapp$ | async"
+	  [errorMessage]="errorMessage$ | async"
+    (checked)="checkChanged($event)"
+    (initializeNewapp)="(newapp())"
+    (selected)="appSelected($event)"></pm-app-list>
+  </div>
+  <div class='col-md-8'>
+    <pm-app-edit
+    [selectedapp]="selectedapp$ | async"
+	  [errorMessage]="errorMessage$ | async"
+    (clearCurrent)="clearapp()"
+    (update)="updateapp($event)"
+    (delete)="deleteapp($event)"
+    (create)="saveapp($event)"></pm-app-edit>
+  </div>
+</div>

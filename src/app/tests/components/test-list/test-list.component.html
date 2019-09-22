@@ -1,0 +1,49 @@
+<div class="card">
+
+  <div class="card-header">
+    {{pageTitle}}
+  </div>
+  <div class="card-body" *ngIf="apps">
+    <div class="list-group">
+      <button class="list-group-item list-group-item-action rounded-0"
+          *ngFor="let app of apps"
+          [ngClass]="{'active': test?.id === app?.id}"
+          (click)="app(test)">{{ app.appName }}
+      </button>
+    </div>
+  </div>
+  <div class="card-body" *ngIf="tests">
+    <div class="list-group">
+      <button class="list-group-item list-group-item-action rounded-0"
+          *ngFor="let test of tests"
+          [ngClass]="{'active': test?.id === selectedtest?.id}"
+          (click)="testSelected(test)">{{ test.testName }}
+        <ng-container *ngIf="displayCode">
+          ({{ test.testCode }})
+        </ng-container>
+      </button>
+    </div>
+  </div>
+
+  <div class="card-footer">
+    <div class="row">
+      <div class="form-check col-md-7">
+        <label>
+          <input class="form-check-input"
+                 type="checkbox"
+                 (change)="checkChanged($event.target.checked)"
+                 [checked]="displayCode">
+          Display test Code
+        </label>
+      </div>
+      <div class="col-md-4 text-right">
+        <button class="btn btn-primary" (click)="newtest()">
+          Add
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="errorMessage" class="alert alert-danger">
+  Error: {{ errorMessage }}
+</div>
